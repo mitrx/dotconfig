@@ -1,0 +1,26 @@
+# set -x GDK_BACKEND wayland
+set -x CLUTTER_BACKEND wayland
+
+set -x XDG_SESSION_TYPE wayland
+set -x QT_QPA_PLATFORM wayland-egl
+set -x QT_WAYLAND_DISABLE_WINDOWDECORATION '1'
+set -x QT_WAYLAND_FORCE_DPI physical
+
+set -x ECORE_EVAS_ENGINE wayland_egl
+set -x ELM_ENGINE wayland_egl
+
+set -x SDL_VIDEODRIVER wayland
+
+set -x _JAVA_AWT_WM_NONREPARENTING 1
+
+# to prevent remote connection error by SSH https://wiki.archlinux.org/index.php/Termite#Remote_SSH_error
+set -x TERM xterm-256color
+
+# make gpg-agent recognize the terminal
+set -x GPG_TTY (tty)
+gpg-connect-agent updatestartuptty /bye >/dev/null
+
+# disable emojis in minikube
+set -x MINIKUBE_IN_STYLE 0
+
+set -x PATH $HOME/bin $PATH
